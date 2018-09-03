@@ -6,7 +6,7 @@ import {User} from '../model/User';
 import * as socketIo from 'socket.io-client';
 import { Http } from '@angular/http';
 
-const SERVER_URL = 'http://ammarameerdeen.surge.sh/';
+const SERVER_URL = 'http://localhost:3000';
 
     @Injectable()
     export class ChatService {
