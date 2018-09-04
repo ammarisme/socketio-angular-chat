@@ -44,9 +44,14 @@ io.on('connection',socket=> {
     });
 
     socket.on('sendMessage', function(message){
-        console.log(message);
+        console.log(message.reciever);
+
+        io.to(`${message.reciever}`).emit('messagerecieved',message);
         // io.sockets[message.reciever].emit(message);
-        io.emit('messagerecieved', message);
+        // io.emit('messagerecieved', message);
+
+        // console.log(message.reciever)
+        // console.log(io.sockets.connected[message.reciever]);//.emit(message);
         // io.socket.emit('messagerecieved', message);
     });
 
@@ -62,6 +67,6 @@ function removeFunction (myObjects,prop,valu)
 
         }
 
-http.listen(3000, function(){
+var server = http.listen(3000, function(){
   console.log('listening on *:3000');
 });

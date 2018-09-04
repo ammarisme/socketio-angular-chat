@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
   showingMessages = [];
 
   ngOnInit(): void {
-    this.chat.initSocket('');
+    // this.chat.initSocket('');
     this.myToken = localStorage.getItem('token');
     this.myName = localStorage.getItem('myName')
     
@@ -35,6 +35,7 @@ export class DashboardComponent implements OnInit {
       }
     });
     this.chat.messageRecievedObservable.subscribe(message =>{
+      console.log(message);
       this.messages.push(message);
       this.getShowingMessages();
     })
@@ -78,8 +79,10 @@ export class DashboardComponent implements OnInit {
       message : this.userMessage,
       sentTime : this.currentTime()
     };
+    this.messages.push(mes);
     this.chat.send(mes);
     this.getShowingMessages();
+    this.userMessage = '';
   }
 
   initiateChat(user){
