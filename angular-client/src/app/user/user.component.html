@@ -1,0 +1,9 @@
+  <div    *ngIf="user.token!=myToken"  [ngClass]="chatActive?'chat_list active_chat':'chat_list'"  (click)="initChat()"  >
+    <div class="chat_people">
+      <div class="chat_img"> <img src="/assets/avatar.png" alt="chat avatar"> </div>
+      <div class="chat_ib">
+        <h5>{{user.name}} <span class="chat_date">{{user.lastMessageTime}}</span></h5>
+        <p>{{getLastMessageOf(user)}}</p>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,5 @@
+<div [ngClass]="message.sender==myToken?'outgoing_msg':'incoming_msg'">
+<div [ngClass]="message.sender==myToken?'sent_msg':'received_withd_msg'">
+      <p>{{message.message}}</p>
+<span class="time_date"> {{message.sentTime}}</span> </div>
+</div>

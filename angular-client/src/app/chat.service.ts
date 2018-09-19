@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import {  Observer ,Observable ,BehaviorSubject } from 'rxjs';
-import { Message } from '../model/message';
-import {User} from '../model/User';
 
 import * as socketIo from 'socket.io-client';
-import { Http } from '@angular/http';
+import { Message } from './message/message';
 
 const SERVER_URL = 'http://localhost:3000';
 
     @Injectable()
     export class ChatService {
         constructor(){}
+    
         
         private socket;
         private messageData :any =[];
@@ -18,7 +17,8 @@ const SERVER_URL = 'http://localhost:3000';
         public connectObservable;
         public usersConnectedObservable;
         public messageRecievedObservable;
-
+        public messages :Message[] =[];
+        public currentlyChattingOtherUser : string;
 
         public register(user){
             
@@ -59,6 +59,7 @@ const SERVER_URL = 'http://localhost:3000';
 
         this.messageRecievedObservable = new Observable(observer => {
             this.socket.on('messagerecieved', (data) => {
+                this.messages.push(data);
             observer.next(data);
             })
             return () => {
@@ -67,15 +68,17 @@ const SERVER_URL = 'http://localhost:3000';
         });
         }
 
-
-
         public send(message): void {
+            this.messages.push(message);
             this.socket.emit('sendMessage', message);
         }
 
         public onMessage(): Observable<Message> {
             return new Observable<Message>(observer => {
-                this.socket.on('message', (data: Message) => observer.next(data));
+                this.socket.on('message', (data: Message) =>{
+                    this.messages.push(data);
+                    observer.next(data)
+                    });
             });
         }
 

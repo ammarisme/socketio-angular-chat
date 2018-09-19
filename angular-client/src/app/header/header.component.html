@@ -1,0 +1,24 @@
+
+    <div class="container">
+  <h3 class=" text-center">{{myName}}</h3>
+  <div class="messaging">
+        <div class="inbox_msg">
+          <div class="inbox_people">
+            <div class="inbox_chat">
+              <app-user [otherUser]="this.chat.currentlyChattingUser" [myToken]="myToken" [user]="user" *ngFor="let user of users" (userIconClicked)="initiateChat(user)"></app-user>
+            </div>
+          </div>
+          <div class="mesgs">
+            <div class="msg_history">
+              <app-message [myToken]="myToken" [message]="message" *ngFor="let message of showingMessages" ></app-message>
+            </div>
+            <div class="type_msg">
+              <div class="input_msg_write">
+                <input [(ngModel)]="userMessage" type="text" class="write_msg" placeholder="Type a message" />
+                <button class="msg_send_btn" (click)="onClickSendMessage($event)" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
