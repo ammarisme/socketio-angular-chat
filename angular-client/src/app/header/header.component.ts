@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../chat.service';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private chat : ChatService, private http : Http, private router : Router){}
+  constructor(private chat : ChatService, private http : Http, private router : Router, private auth : AuthService){}
   connection;
   users = [];
   userMessage;
@@ -91,5 +92,10 @@ export class HeaderComponent implements OnInit {
   initiateChat(user){
     this.otheruser = user.token;
     this.getShowingMessages();
+  }
+
+  logout(){
+    this.auth.logout();
+    this.router.navigate(["/login"]);
   }
 }

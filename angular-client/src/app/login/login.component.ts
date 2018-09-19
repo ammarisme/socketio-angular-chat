@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { ChatService } from '../chat.service';
-import { User } from '../users/user/User';
+import { User } from '../user/User';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   username="";
   user : User = new User();
 
-  constructor(private chat :ChatService, private router: Router){}
+  constructor(private chat :ChatService, private router: Router, private auth : AuthService){}
 
   ngOnInit(){
   } 

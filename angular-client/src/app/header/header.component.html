@@ -1,6 +1,14 @@
 
     <div class="container">
-  <h3 class=" text-center">{{myName}}</h3>
+      <div class="row">
+        <div class="col-md-9">
+          <h3 class="text-center">{{myName}}</h3>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-primary pull-right" (click)="logout()" >Logout</button>
+        </div>
+        
+      </div>
   <div class="messaging">
         <div class="inbox_msg">
           <div class="inbox_people">

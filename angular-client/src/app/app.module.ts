@@ -11,6 +11,8 @@ import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app.routing';
 import { ChatService } from './chat.service';
 import { HttpModule } from '@angular/http';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,7 @@ import { HttpModule } from '@angular/http';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [ChatService],
+  providers: [ChatService, AuthService , AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -25,6 +25,10 @@ const SERVER_URL = 'http://localhost:3000';
             this.socket.emit('register' , user);
         }
 
+        public disconnect(){
+            this.socket.disconnect();
+        }
+
         public initSocket(username): void {
             this.socket = socketIo(SERVER_URL);
 
